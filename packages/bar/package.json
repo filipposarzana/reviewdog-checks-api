@@ -1,0 +1,9 @@
+{
+  "private": true,
+  "name": "bar",
+  "version": "1.0.0",
+  "scripts": {
+    "eslint": "eslint ./src/**/*.js",
+    "tslint": "tslint ./src/**/*.ts"
+  }
+}

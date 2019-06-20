@@ -1,0 +1,38 @@
+{
+  "private": true,
+  "name": "reviewdog-checks-api",
+  "workspaces": [
+    "packages/*"
+  ],
+  "version": "1.0.0",
+  "description": "Using reviewdog with ESLint/TSLint in monorepo",
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {
+    "eslint": "^5.16.0",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-plugin-import": "^2.17.3",
+    "eslint-plugin-jsx-a11y": "^6.2.1",
+    "eslint-plugin-react": "^7.13.0",
+    "tslint": "^5.17.0",
+    "typescript": "^3.5.2"
+  },
+  "scripts": {
+    "eslint:bar": "yarn --cwd ./packages/bar eslint",
+    "eslint:baz": "yarn --cwd ./packages/baz eslint",
+    "eslint:foo": "yarn --cwd ./packages/foo eslint",
+    "tslint:bar": "yarn --cwd ./packages/bar tslint",
+    "tslint:baz": "yarn --cwd ./packages/baz tslint",
+    "tslint:foo": "yarn --cwd ./packages/foo tslint"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/filipposarzana/reviewdog-checks-api.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/filipposarzana/reviewdog-checks-api/issues"
+  },
+  "homepage": "https://github.com/filipposarzana/reviewdog-checks-api#readme"
+}

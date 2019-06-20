@@ -1,0 +1,32 @@
+---
+dist: trusty
+language: node_js
+node_js:
+  - 10
+cache:
+  yarn: true
+  directories:
+  - node_modules
+install: true
+stages:
+  - Install
+  - ESLint
+  - TSLint
+jobs:
+  include:
+    - stage: Install
+      script: yarn
+
+    - stage: ESLint
+      script: yarn eslint:bar | reviewdog -f=eslint -name=eslint -reporter=github-pr-check || true
+    -
+      script: yarn eslint:baz | reviewdog -f=eslint -name=eslint -reporter=github-pr-check || true
+    -
+      script: yarn eslint:foo | reviewdog -f=eslint -name=eslint -reporter=github-pr-check || true
+
+    - stage: TSLint
+      script: yarn tslint:bar | reviewdog -f=tslint -name=tslint -reporter=github-pr-check || true
+    -
+      script: yarn tslint:baz | reviewdog -f=tslint -name=tslint -reporter=github-pr-check || true
+    -
+      script: yarn tslint:foo | reviewdog -f=tslint -name=tslint -reporter=github-pr-check || true
