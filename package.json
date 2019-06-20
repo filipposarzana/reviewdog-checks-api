@@ -14,16 +14,23 @@
     "eslint-plugin-import": "^2.17.3",
     "eslint-plugin-jsx-a11y": "^6.2.1",
     "eslint-plugin-react": "^7.13.0",
+    "stylelint": "^10.1.0",
+    "stylelint-checkstyle-formatter": "^0.1.2",
+    "stylelint-config-standard": "^18.3.0",
     "tslint": "^5.17.0",
     "typescript": "^3.5.2"
   },
   "scripts": {
-    "eslint:bar": "yarn --cwd ./packages/bar eslint",
-    "eslint:baz": "yarn --cwd ./packages/baz eslint",
-    "eslint:foo": "yarn --cwd ./packages/foo eslint",
-    "tslint:bar": "yarn --cwd ./packages/bar tslint",
-    "tslint:baz": "yarn --cwd ./packages/baz tslint",
-    "tslint:foo": "yarn --cwd ./packages/foo tslint"
+    "lint:bar:eslint": "eslint ./packages/bar/**/*.js",
+    "lint:bar:tslint": "tslint ./packages/bar/**/*.ts",
+    "lint:bar:typecheck": "tsc -p ./packages/bar/tsconfig.json",
+    "lint:baz:eslint": "eslint ./packages/baz/**/*.js",
+    "lint:baz:tslint": "tslint ./packages/baz/**/*.ts",
+    "lint:baz:typecheck": "tsc -p ./packages/baz/tsconfig.json",
+    "lint:foo:eslint": "eslint ./packages/foo/**/*.js",
+    "lint:foo:tslint": "tslint ./packages/foo/**/*.ts",
+    "lint:foo:typecheck": "tsc -p ./packages/foo/tsconfig.json",
+    "lint:stocazzo:style": "stylelint ./packages/stocazzo/**/*.scss --config=\"./packages/stocazzo/stylelintrc.yml\""
   },
   "repository": {
     "type": "git",

@@ -7,7 +7,10 @@ cache:
   yarn: true
   directories:
   - node_modules
-install: true
+install:
+  - mkdir -p ~/bin/ && export export PATH="~/bin/:$PATH"
+  - curl -sfL https://raw.githubusercontent.com/reviewdog/reviewdog/master/install.sh| sh -s -- -b ~/bin
+
 stages:
   - Install
   - ESLint
@@ -18,15 +21,35 @@ jobs:
       script: yarn
 
     - stage: ESLint
-      script: yarn eslint:bar | reviewdog -f=eslint -name=eslint -reporter=github-pr-check || true
+      name: ESLint Checks - Bar
+      script: ./node_modules/eslint/bin/eslint.js ./packages/bar/**/*.js | reviewdog -f eslint -name eslint-bar -reporter=github-pr-check
     -
-      script: yarn eslint:baz | reviewdog -f=eslint -name=eslint -reporter=github-pr-check || true
+      name: ESLint Checks - Baz
+      script: ./node_modules/eslint/bin/eslint.js ./packages/baz/**/*.js | reviewdog -f eslint -name eslint-baz -reporter=github-pr-check
     -
-      script: yarn eslint:foo | reviewdog -f=eslint -name=eslint -reporter=github-pr-check || true
+      name: ESLint Checks - Foo
+      script: ./node_modules/eslint/bin/eslint.js ./packages/foo/**/*.js | reviewdog -f eslint -name eslint-foo -reporter=github-pr-check
+
+    - stage: Stylelint
+      name: Stylelint Checks - Stocazzo
+      script: ./node_modules/stylelint/bin/stylelint.js ./packages/stocazzo/**/*.scss --config="./packages/stocazzo/stylelintrc.yml" --custom-formatter=./node_modules/stylelint-checkstyle-formatter | reviewdog -f checkstyle -name stylelint-bar -reporter=github-pr-check
 
     - stage: TSLint
-      script: yarn tslint:bar | reviewdog -f=tslint -name=tslint -reporter=github-pr-check || true
+      name: TSLint Checks - Bar
+      script: ./node_modules/tslint/bin/tslint -t checkstyle ./packages/bar/**/*.ts | reviewdog -f checkstyle -name tslint-bar -reporter=github-pr-check
     -
-      script: yarn tslint:baz | reviewdog -f=tslint -name=tslint -reporter=github-pr-check || true
+      name: TSLint Checks - Baz
+      script: ./node_modules/tslint/bin/tslint -t checkstyle ./packages/baz/**/*.ts | reviewdog -f checkstyle -name tslint-baz -reporter=github-pr-check
     -
-      script: yarn tslint:foo | reviewdog -f=tslint -name=tslint -reporter=github-pr-check || true
+      name: TSLint Checks - Foo
+      script: ./node_modules/tslint/bin/tslint -t checkstyle ./packages/foo/**/*.ts | reviewdog -f checkstyle -name tslint-foo -reporter=github-pr-check
+
+    - stage: Typecheck
+      name: Typecheck Checks - Bar
+      script: ./node_modules/typescript/bin/tsc -p ./packages/bar/tsconfig.json | reviewdog -f tsc -name tsc-bar -reporter=github-pr-check
+    -
+      name: Typecheck Checks - Baz
+      script: ./node_modules/typescript/bin/tsc -p ./packages/baz/tsconfig.json | reviewdog -f tsc -name tsc-baz -reporter=github-pr-check
+    -
+      name: Typecheck Checks - Foo
+      script: ./node_modules/typescript/bin/tsc -p ./packages/foo/tsconfig.json | reviewdog -f tsc -name tsc-foo -reporter=github-pr-check

@@ -1,9 +1,5 @@
 {
   "private": true,
   "name": "foo",
-  "version": "1.0.0",
-  "scripts": {
-    "eslint": "eslint ./src/**/*.js",
-    "tslint": "tslint ./src/**/*.ts"
-  }
+  "version": "1.0.0"
 }

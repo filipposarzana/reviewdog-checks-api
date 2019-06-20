@@ -1,8 +1,12 @@
 export type Bar = {
-  bar: string
+  bar: string,
 }
 
-export const bar = (value: string): Bar => value === 'Bar' ? {
+type Foo = {
+  foo: string
+}
+
+export const bar = (value: string): Bar | undefined => value === 'Bar' ? {
   bar: value,
 } : undefined
 
