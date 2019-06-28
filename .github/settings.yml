@@ -1,0 +1,46 @@
+repository:
+  name: config
+  description: Filippo Sarzana's config
+  has_projects: false
+  has_wiki: false
+  
+labels:
+  - name: "#squad/FOO"
+    color: b0bec5
+  - name: "#squad/BAR"
+    color: b0bec5
+
+  - name: "@points/0"
+    color: fef2c0
+  - name: "@points/1"
+    color: fef2c0
+  - name: "@points/2"
+    color: fef2c0
+  - name: "@points/3"
+    color: 01deff
+  - name: "@points/4"
+    color: 006b75
+  - name: "@points/5"
+    color: 608000
+    
+  - name: area/TECH
+    color: fef2c0
+    
+  - name: kind/BUG
+    color: fc2929
+    
+  - name: severity/CRITICAL
+    color: ffab40
+  - name: severity/MAJOR
+    color: e99695
+  - name: severity/MINOR
+    color: 5319e1
+  - name: severity/TRIVIAL
+    color: 7c3626
+
+  - name: status/CR-NEEDED
+    color: fbca04
+  - name: status/CR-ISSUES-FOUND
+    color: d93f0b
+  - name: status/OK-TO-MERGE
+    color: 00cc00
